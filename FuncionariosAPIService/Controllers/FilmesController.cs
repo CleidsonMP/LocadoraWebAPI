@@ -19,14 +19,14 @@ namespace Locadora.Controllers
         // GET: api/Filmes
         public IQueryable<Filme> GetFilmes()
         {
-            return db.Filmes;
+            return db.Filmes.Where(f => f.RegAtivo.Equals("S")); 
         }
 
         // GET: api/Filmes/5
         [ResponseType(typeof(Filme))]
         public IHttpActionResult GetFilme(int id)
         {
-            Filme filme = db.Filmes.Find(id);
+            Filme filme = db.Filmes.Where(c => c.Id == id && c.RegAtivo.Equals("S")).FirstOrDefault();
             if (filme == null)
             {
                 return NotFound();
@@ -87,15 +87,15 @@ namespace Locadora.Controllers
 
         // DELETE: api/Filmes/5
         [ResponseType(typeof(Filme))]
-        public IHttpActionResult DeleteFilme(int id)
+        public IHttpActionResult PatchFilme(int id)
         {
             Filme filme = db.Filmes.Find(id);
             if (filme == null)
             {
                 return NotFound();
             }
-
-            db.Filmes.Remove(filme);
+          
+            filme.RegAtivo = "N";
             db.SaveChanges();
 
             return Ok(filme);

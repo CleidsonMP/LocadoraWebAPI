@@ -80,9 +80,14 @@ namespace Locadora.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Locacoes.Add(locacao);
-            db.SaveChanges();
+            if (FilmeDisponivel(locacao.FilmeId))
+            {
+                Filme filme = db.Filmes.Find(locacao.FilmeId);
+                filme.Disponivel = "N";
+                db.Locacoes.Add(locacao);
+                db.SaveChanges();
 
+            } else return Ok("Filme indiponível para locação.");
             return CreatedAtRoute("DefaultApi", new { id = locacao.Id }, locacao);
         }
 
@@ -96,7 +101,7 @@ namespace Locadora.Controllers
                 return NotFound();
             }
 
-            db.Locacoes.Remove(locacao);
+            locacao.RegAtivo = "N";
             db.SaveChanges();
 
             return Ok(locacao);
@@ -114,6 +119,11 @@ namespace Locadora.Controllers
         private bool LocacaoExists(int id)
         {
             return db.Locacoes.Count(e => e.Id == id) > 0;
+        }
+
+        private bool FilmeDisponivel(int id)
+        {
+            return db.Filmes.Count(e => e.Id == id && e.Disponivel.Equals("S")) > 0;
         }
     }
 }

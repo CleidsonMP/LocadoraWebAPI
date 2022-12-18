@@ -16,43 +16,34 @@ namespace Locadora.Controllers
     {
         private LocadoraDBContext db = new LocadoraDBContext();
 
-        // GET: api/Devolucao
-        public IQueryable<Locacao> GetLocacoes()
-        {
-            return db.Locacoes;
-        }
-
-        // GET: api/Devolucao/5
-        [ResponseType(typeof(Locacao))]
-        public IHttpActionResult GetLocacao(int id)
-        {
-            Locacao locacao = db.Locacoes.Find(id);
-            if (locacao == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(locacao);
-        }
-
         // PUT: api/Devolucao/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLocacao(int id, Locacao locacao)
+        public IHttpActionResult PatchLocacao(int id, Locacao locacao)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (id != locacao.Id)
-            {
-                return BadRequest();
-            }
-            locacao.StatusLocacao = StatusLocacao.Devolvido;
-            db.Entry(locacao).State = EntityState.Modified;
+           
+            Locacao objLocacao = db.Locacoes.Find(id);
 
+            Filme filme = db.Filmes.Find(objLocacao.FilmeId);
+            filme.Disponivel = "S";
+
+            objLocacao.DataDevolvido = DateTime.Now;
+            objLocacao.StatusLocacao = StatusLocacao.Devolvido;
+              
+           
             try
             {
                 db.SaveChanges();
+                objLocacao = db.Locacoes.Find(id);
+                if (objLocacao.DataDevolvido > objLocacao.DataDevolucao)
+                    return Ok("Atenção: Filme devolvido com atraso.");
+                else
+                    return Ok("Filme devolvido.");
+
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -65,41 +56,9 @@ namespace Locadora.Controllers
                     throw;
                 }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/Devolucao
-        [ResponseType(typeof(Locacao))]
-        public IHttpActionResult PostLocacao(Locacao locacao)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Locacoes.Add(locacao);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = locacao.Id }, locacao);
-        }
-
-        // DELETE: api/Devolucao/5
-        [ResponseType(typeof(Locacao))]
-        public IHttpActionResult DeleteLocacao(int id)
-        {
-            Locacao locacao = db.Locacoes.Find(id);
-            if (locacao == null)
-            {
-                return NotFound();
-            }
-
-            db.Locacoes.Remove(locacao);
-            db.SaveChanges();
-
-            return Ok(locacao);
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

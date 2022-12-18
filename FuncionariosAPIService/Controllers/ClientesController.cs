@@ -19,14 +19,14 @@ namespace Locadora.Controllers
         // GET: api/Clientes
         public IQueryable<Cliente> GetClientes()
         {
-            return db.Clientes;
+            return db.Clientes.Where(c=>c.RegAtivo.Equals("S"));
         }
 
         // GET: api/Clientes/5
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult GetCliente(int id)
         {
-            Cliente cliente = db.Clientes.Find(id);
+            Cliente cliente = db.Clientes.Where(c=>c.Id==id && c.RegAtivo.Equals("S")).FirstOrDefault();
             if (cliente == null)
             {
                 return NotFound();
@@ -92,7 +92,7 @@ namespace Locadora.Controllers
 
         // DELETE: api/Clientes/5
         [ResponseType(typeof(Cliente))]
-        public IHttpActionResult DeleteCliente(int id)
+        public IHttpActionResult PatchCliente(int id)
         {
             Cliente cliente = db.Clientes.Find(id);
             if (cliente == null)
@@ -100,7 +100,7 @@ namespace Locadora.Controllers
                 return NotFound();
             }
 
-            db.Clientes.Remove(cliente);
+            cliente.RegAtivo = "N";
             db.SaveChanges();
 
             return Ok(cliente);
