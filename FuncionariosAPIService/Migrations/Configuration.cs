@@ -8,7 +8,7 @@ namespace Locadora.Migrations
     using System.Data.Entity.Migrations.Sql;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Locadora.Models.FuncionarioDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Locadora.Models.LocadoraDBContext>
     {
         public class FixedMySqlMigrationSqlGenerator : MySqlMigrationSqlGenerator
         {
@@ -42,7 +42,7 @@ namespace Locadora.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new FixedMySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(Locadora.Models.FuncionarioDBContext context)
+        protected override void Seed(Locadora.Models.LocadoraDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

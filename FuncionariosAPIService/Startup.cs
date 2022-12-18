@@ -25,25 +25,11 @@ namespace Locadora
         // ativando cors
         app.UseCors(CorsOptions.AllowAll);
 
-        //ativando a geração dos tokens de acesso
-        AtivarGeracaoTokenAcesso(app);
-
+       
         // ativando configuração WebApi
         app.UseWebApi(config);
         }
 
-        private void AtivarGeracaoTokenAcesso(IAppBuilder app)
-        {
-            var opcoesConfiguracaoToken = new OAuthAuthorizationServerOptions()
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
-                Provider = new ProviderDeTokensDeAcesso()
-            };
-
-            app.UseOAuthAuthorizationServer(opcoesConfiguracaoToken);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-        }
+        
     }
 }

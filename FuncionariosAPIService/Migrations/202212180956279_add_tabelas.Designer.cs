@@ -7,13 +7,13 @@ namespace Locadora.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class add_RegAtivo_Filme : IMigrationMetadata
+    public sealed partial class add_tabelas : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_RegAtivo_Filme));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_tabelas));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212172131047_add_RegAtivo_Filme"; }
+            get { return "202212180956279_add_tabelas"; }
         }
         
         string IMigrationMetadata.Source

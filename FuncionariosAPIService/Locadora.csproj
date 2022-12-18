@@ -220,66 +220,23 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DevolucaoController.cs" />
     <Compile Include="Controllers\FilmesController.cs" />
-    <Compile Include="Controllers\FuncionarioController.cs" />
-    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocacaoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212170513581_add_database.cs" />
-    <Compile Include="Migrations\202212170513581_add_database.Designer.cs">
-      <DependentUpon>202212170513581_add_database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212171417474_add_CPF.cs" />
-    <Compile Include="Migrations\202212171417474_add_CPF.Designer.cs">
-      <DependentUpon>202212171417474_add_CPF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212171711551_add_cliente.cs" />
-    <Compile Include="Migrations\202212171711551_add_cliente.Designer.cs">
-      <DependentUpon>202212171711551_add_cliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212171712415_add_filme.cs" />
-    <Compile Include="Migrations\202212171712415_add_filme.Designer.cs">
-      <DependentUpon>202212171712415_add_filme.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212171729543_add_locacao.cs" />
-    <Compile Include="Migrations\202212171729543_add_locacao.Designer.cs">
-      <DependentUpon>202212171729543_add_locacao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212172129028_add_RegAtivo_Cliente.cs" />
-    <Compile Include="Migrations\202212172129028_add_RegAtivo_Cliente.Designer.cs">
-      <DependentUpon>202212172129028_add_RegAtivo_Cliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212172131047_add_RegAtivo_Filme.cs" />
-    <Compile Include="Migrations\202212172131047_add_RegAtivo_Filme.Designer.cs">
-      <DependentUpon>202212172131047_add_RegAtivo_Filme.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212172132149_add_RegAtivo_Locacao.cs" />
-    <Compile Include="Migrations\202212172132149_add_RegAtivo_Locacao.Designer.cs">
-      <DependentUpon>202212172132149_add_RegAtivo_Locacao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212172133490_add_Disponivel_Filme.cs" />
-    <Compile Include="Migrations\202212172133490_add_Disponivel_Filme.Designer.cs">
-      <DependentUpon>202212172133490_add_Disponivel_Filme.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212172153311_add_Status_DataDevolvido.cs" />
-    <Compile Include="Migrations\202212172153311_add_Status_DataDevolvido.Designer.cs">
-      <DependentUpon>202212172153311_add_Status_DataDevolvido.cs</DependentUpon>
+    <Compile Include="Migrations\202212180956279_add_tabelas.cs" />
+    <Compile Include="Migrations\202212180956279_add_tabelas.Designer.cs">
+      <DependentUpon>202212180956279_add_tabelas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Filme.cs" />
-    <Compile Include="Models\Funcionario.cs" />
-    <Compile Include="Models\FuncionarioDBContext.cs" />
+    <Compile Include="Models\LocadoraDBContext.cs" />
     <Compile Include="Models\Locacao.cs" />
     <Compile Include="Models\StatusLocacao.cs" />
-    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProviderDeTokensDeAcesso.cs" />
-    <Compile Include="Services\BasicAuthenticationAttribute.cs" />
-    <Compile Include="Services\FuncionariosSeguranca.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -351,35 +309,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202212170513581_add_database.resx">
-      <DependentUpon>202212170513581_add_database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212171417474_add_CPF.resx">
-      <DependentUpon>202212171417474_add_CPF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212171711551_add_cliente.resx">
-      <DependentUpon>202212171711551_add_cliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212171712415_add_filme.resx">
-      <DependentUpon>202212171712415_add_filme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212171729543_add_locacao.resx">
-      <DependentUpon>202212171729543_add_locacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212172129028_add_RegAtivo_Cliente.resx">
-      <DependentUpon>202212172129028_add_RegAtivo_Cliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212172131047_add_RegAtivo_Filme.resx">
-      <DependentUpon>202212172131047_add_RegAtivo_Filme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212172132149_add_RegAtivo_Locacao.resx">
-      <DependentUpon>202212172132149_add_RegAtivo_Locacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212172133490_add_Disponivel_Filme.resx">
-      <DependentUpon>202212172133490_add_Disponivel_Filme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212172153311_add_Status_DataDevolvido.resx">
-      <DependentUpon>202212172153311_add_Status_DataDevolvido.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212180956279_add_tabelas.resx">
+      <DependentUpon>202212180956279_add_tabelas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

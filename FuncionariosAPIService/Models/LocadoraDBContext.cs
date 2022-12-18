@@ -2,13 +2,12 @@
 
 namespace Locadora.Models
 {
-    public class FuncionarioDBContext : DbContext
+    public class LocadoraDBContext : DbContext
     {
-        public FuncionarioDBContext() : base("name=FuncionarioDBContext")
+        public LocadoraDBContext() : base("name=LocadoraDBContext")
         {}
 
-        public virtual DbSet<Funcionario> Funcionarios { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
+     
 
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Filme> Filmes { get; set; }

@@ -14,7 +14,7 @@ namespace Locadora.Controllers
 {
     public class LocacaoController : ApiController
     {
-        private FuncionarioDBContext db = new FuncionarioDBContext();
+        private LocadoraDBContext db = new LocadoraDBContext();
 
         // GET: api/Locacao
         public IQueryable<Locacao> GetLocacoes()
